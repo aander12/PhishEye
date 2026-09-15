@@ -17,7 +17,7 @@ const knownBrands = [
     "google", "microsoft", "apple", "amazon", "facebook", "meta", "instagram",
     "whatsapp", "yahoo", "aol", "outlook", "office365", "icloud", "adobe",
     "dropbox", "linkedin", "twitter", "x", "tiktok", "snapchat", "pinterest",
-    "reddit", "discord", "telegram", "signal", "zoom", "skype", "slack",
+    "reddit", "discord", "telegram", "signal", "zoom", "skype", "slack", "github",
 
     // Banks / finance
     "chase", "wellsfargo", "bankofamerica", "citibank", "citi", "usbank",
